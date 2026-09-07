@@ -7,11 +7,9 @@
   <title>Acceso al cotejador</title>
   <style>
     :root {
-      --azul-oscuro: #0B1F3A;
-      --azul-petroleo: #123C52;
-      --dorado: #C9A646;
-      --gris-fondo: #F4F6F9;
-      --tinta-suave: #4A5568;
+      --azul: #0B1F3A;
+      --blanco: #FFFFFF;
+      --blanco-suave: #D9E2EE;
     }
 
     * {
@@ -23,56 +21,134 @@
       margin: 0;
       display: grid;
       place-items: center;
-      padding: 24px;
-      background: var(--gris-fondo);
-      color: var(--azul-oscuro);
+      padding: 24px 32px;
+      background: var(--azul);
+      color: var(--blanco);
       font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .marca h1 {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .sello-no {
+      display: inline-block;
+      padding: 3px 10px;
+      color: #C9A646;
+      border: 2px solid #C9A646;
+      border-radius: 4px;
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transform: rotate(-1.5deg);
     }
 
     .contenedor {
       width: min(100%, 520px);
-      padding: 32px 28px;
       text-align: center;
-      background: #fff;
-      border-top: 4px solid var(--dorado);
-      border-radius: 10px;
-      box-shadow: 0 8px 24px rgba(11, 31, 58, 0.12);
     }
 
-    h1 {
+    .marca {
+      margin-bottom: 50px;
+    }
+
+    h2 {
       margin: 0 0 12px;
-      font-size: 24px;
+      font-size: 25px;
+      line-height: 1.3;
     }
 
     p {
       margin: 0;
-      color: var(--tinta-suave);
+      color: var(--blanco-suave);
       line-height: 1.55;
+    }
+
+    .cargador {
+      width: 34px;
+      height: 34px;
+      margin: 0 auto 28px;
+      border: 3px solid rgba(255, 255, 255, 0.25);
+      border-top-color: var(--blanco);
+      border-radius: 50%;
+      animation: girar 0.9s linear infinite;
     }
 
     .estado {
       margin-top: 20px;
-      color: var(--azul-petroleo);
+      color: var(--blanco);
       font-weight: 600;
     }
 
     .enlace {
       display: inline-block;
       margin-top: 22px;
-      color: var(--azul-petroleo);
+      color: #C9A646;
       font-weight: 600;
+    }
+
+    .enlace:hover,
+    .enlace:focus-visible {
+      color: #E5C368;
+    }
+
+    @keyframes girar {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cargador {
+        animation: none;
+      }
+    }
+
+    @media (max-width: 500px) {
+      body {
+        padding: 24px 18px;
+      }
+
+      .marca {
+        margin-bottom: 38px;
+      }
+
+      .marca h1 {
+        gap: 8px;
+        font-size: 24px;
+      }
+
+      .sello-no {
+        padding: 2px 7px;
+        font-size: 11px;
+      }
     }
   </style>
 </head>
 
 <body>
   <main class="contenedor" aria-live="polite">
-    <h1>Acceso al cotejador</h1>
-    <p>Se está preparando el acceso a la herramienta de cotejo de citas.</p>
-    <p class="estado" id="estado">Redirigiendo en unos instantes…</p>
-    <a class="enlace" href="https://claude.ai/public/artifacts/e2a8b2eb-69e6-40b7-a770-32a82f96139e">
-      Continuar manualmente
-    </a>
+    <header class="marca">
+      <h1>Pilar <span class="sello-no">«No»</span> Alucina</h1>
+    </header>
+
+    <section>
+      <div class="cargador" role="status" aria-label="Cargando"></div>
+      <h2>Acceso al cotejador</h2>
+      <p>Se está preparando el acceso a la herramienta de cotejo de citas.</p>
+      <p class="estado" id="estado">Redirigiendo en 2 segundos…</p>
+      <a class="enlace" href="https://claude.ai/public/artifacts/e2a8b2eb-69e6-40b7-a770-32a82f96139e">
+        Continuar manualmente
+      </a>
+    </section>
   </main>
 
   <script>

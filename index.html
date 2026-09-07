@@ -1,8 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
-  <meta http-equiv="refresh" content="0; url=https://claude.ai/public/artifacts/e2a8b2eb-69e6-40b7-a770-32a82f96139e">
-  <script>window.location.replace("https://claude.ai/public/artifacts/e2a8b2eb-69e6-40b7-a770-32a82f96139e");</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acceso al cotejador</title>
+  <style>
+    :root {
+      --azul-oscuro: #0B1F3A;
+      --azul-petroleo: #123C52;
+      --dorado: #C9A646;
+      --gris-fondo: #F4F6F9;
+      --tinta-suave: #4A5568;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: var(--gris-fondo);
+      color: var(--azul-oscuro);
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .contenedor {
+      width: min(100%, 520px);
+      padding: 32px 28px;
+      text-align: center;
+      background: #fff;
+      border-top: 4px solid var(--dorado);
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(11, 31, 58, 0.12);
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 24px;
+    }
+
+    p {
+      margin: 0;
+      color: var(--tinta-suave);
+      line-height: 1.55;
+    }
+
+    .estado {
+      margin-top: 20px;
+      color: var(--azul-petroleo);
+      font-weight: 600;
+    }
+
+    .enlace {
+      display: inline-block;
+      margin-top: 22px;
+      color: var(--azul-petroleo);
+      font-weight: 600;
+    }
+  </style>
 </head>
-<body></body>
+
+<body>
+  <main class="contenedor" aria-live="polite">
+    <h1>Acceso al cotejador</h1>
+    <p>Se está preparando el acceso a la herramienta de cotejo de citas.</p>
+    <p class="estado" id="estado">Redirigiendo en unos instantes…</p>
+    <a class="enlace" href="https://claude.ai/public/artifacts/e2a8b2eb-69e6-40b7-a770-32a82f96139e">
+      Continuar manualmente
+    </a>
+  </main>
+
+  <script>
+    const DESTINO = "https://claude.ai/public/artifacts/e2a8b2eb-69e6-40b7-a770-32a82f96139e";
+    const estado = document.getElementById("estado");
+    let restante = 2;
+
+    const cuenta = setInterval(() => {
+      restante -= 1;
+      if (restante > 0) {
+        estado.textContent = `Redirigiendo en ${restante} segundo…`;
+      } else {
+        clearInterval(cuenta);
+        estado.textContent = "Abriendo el cotejador…";
+      }
+    }, 1000);
+
+    setTimeout(() => {
+      // Intenta salir del marco del Google Site. Si el navegador lo impide,
+      // utiliza la navegación del propio documento como alternativa.
+      try {
+        window.top.location.replace(DESTINO);
+      } catch {
+        window.location.replace(DESTINO);
+      }
+    }, 2000);
+  </script>
+</body>
+
 </html>
